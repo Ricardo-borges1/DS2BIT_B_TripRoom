@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
@@ -246,6 +247,7 @@ fun SignUp(){
                         .offset(x = 8.dp, y = -2.dp),
                     shape = RoundedCornerShape(10.dp),
                     colors = CardDefaults.cardColors(Color(0xFFC51BCA)),
+
                 ) {
 
                 }
@@ -279,6 +281,12 @@ fun SignUp(){
             .size(width = 70.dp, height = 70.dp)
         )
 
+    Icon(imageVector = Icons.Filled.AddCircle, contentDescription = "",
+        tint = Color(0xFFC51BCA),
+        modifier = Modifier
+            .offset(x = 215.dp, y = 200.dp)
+            .size(width = 30.dp, height = 70.dp)
+    )
     Card (
         modifier = Modifier
             .width(380.dp)
@@ -430,7 +438,8 @@ fun SignUp(){
         shape = RoundedCornerShape(10.dp),
         colors = CardDefaults.cardColors(Color(0xFFC51BCA))
 
-    ){
+
+    ) {
 
     }
 
