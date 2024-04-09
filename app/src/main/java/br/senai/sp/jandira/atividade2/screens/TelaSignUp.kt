@@ -124,7 +124,7 @@ fun SignUp(controleDeNavegacao: NavHostController) {//controleDeNavegacao: NavHo
         Icon(imageVector = Icons.Filled.AddCircle, contentDescription = "",
             tint = Color(0xFFC51BCA),
             modifier = Modifier
-                .offset(x = 215.dp, y = 90.dp)
+                .offset(x = 205.dp, y = 10.dp)
                 .size(width = 30.dp, height = 70.dp)
         )
     }
