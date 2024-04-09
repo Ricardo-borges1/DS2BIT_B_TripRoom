@@ -50,8 +50,13 @@ fun Greeting(controleDeNavegacao: NavHostController) {
         mutableStateOf("")
     }
 
+    var erroState = remember {
+        mutableStateOf(false)
+    }
 
-
+    var mensagemErroState = remember {
+        mutableStateOf("")
+    }
 
 
 
@@ -106,6 +111,11 @@ fun Greeting(controleDeNavegacao: NavHostController) {
                 modifier = Modifier.padding(10.dp)
             ) {
 
+                Text(text = mensagemErroState.value,
+                    color = Color.Red,
+                    modifier = Modifier.padding(start = 4.dp)
+                )
+
                 OutlinedTextField(
                     value = emailState.value,
                     onValueChange = {
@@ -126,7 +136,7 @@ fun Greeting(controleDeNavegacao: NavHostController) {
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = Color(0xFF8BC34A),
                         unfocusedBorderColor = Color(0xFFC51BCA),
-                        focusedTextColor = Color(0xEDEE0505),
+                        focusedTextColor = Color(0xED181717),
                         unfocusedTextColor = Color(0xFF0A0A0A)
                     )
                 )
@@ -158,7 +168,14 @@ fun Greeting(controleDeNavegacao: NavHostController) {
                 )
             }
 
-            Button(onClick = { controleDeNavegacao.navigate("home") },
+            Button(onClick = {
+                if (emailState.value == "admin@admin.com"&&senhaState.value=="admin"){
+                    controleDeNavegacao.navigate("home")
+                }else{
+                    erroState.value=true
+                    mensagemErroState.value=" Usuário ou senha incorretos!"
+                }
+                 },
                 modifier = Modifier
                     .width(150.dp)
                     .height(50.dp)
@@ -187,7 +204,9 @@ fun Greeting(controleDeNavegacao: NavHostController) {
                 text = "Sign UP",
                 fontSize = 15.sp,
                 color = Color(0xFFC51BCA),
-                modifier = Modifier.offset(x = 320.dp, y = 30.dp).clickable { controleDeNavegacao.navigate("cadastro") },
+                modifier = Modifier
+                    .offset(x = 320.dp, y = 30.dp)
+                    .clickable { controleDeNavegacao.navigate("cadastro") },
                 fontWeight = FontWeight.Bold
             )
 

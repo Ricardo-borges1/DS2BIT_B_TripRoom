@@ -139,15 +139,15 @@ fun SignUp(controleDeNavegacao: NavHostController) {//controleDeNavegacao: NavHo
     ) {
         Column (
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.padding(10.dp)
+            modifier = Modifier.padding(5.dp)
         ) {
             OutlinedTextField(
                 value = nomeState.value,
                 onValueChange = {
                     nomeState.value = it
                 },
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(10.dp),
+                modifier = Modifier.width(380.dp),
+                shape = RoundedCornerShape(20.dp),
                 leadingIcon = {
                     Icon(imageVector = Icons.Filled.AccountCircle,
                         contentDescription = "",
@@ -172,8 +172,8 @@ fun SignUp(controleDeNavegacao: NavHostController) {//controleDeNavegacao: NavHo
                 onValueChange = {
                     phoneState.value = it
                 },
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(10.dp),
+                modifier = Modifier.width(380.dp),
+                shape = RoundedCornerShape(20.dp),
                 leadingIcon = {
                     Icon(imageVector = Icons.Filled.Phone,
                         contentDescription = "",
