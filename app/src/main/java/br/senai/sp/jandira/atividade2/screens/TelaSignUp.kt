@@ -198,8 +198,8 @@ fun SignUp(controleDeNavegacao: NavHostController) {//controleDeNavegacao: NavHo
                 onValueChange = {
                     emailState.value = it
                 },
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(10.dp),
+                modifier = Modifier.width(380.dp),
+                shape = RoundedCornerShape(20.dp),
                 leadingIcon = {
                     Icon(imageVector = Icons.Filled.Email,
                         contentDescription = "",
@@ -224,8 +224,8 @@ fun SignUp(controleDeNavegacao: NavHostController) {//controleDeNavegacao: NavHo
                 onValueChange = {
                     senhaState.value = it
                 },
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(10.dp),
+                modifier = Modifier.width(380.dp),
+                shape = RoundedCornerShape(20.dp),
                 leadingIcon = {
                     Icon(imageVector = Icons.Filled.Lock,
                         contentDescription = "",
