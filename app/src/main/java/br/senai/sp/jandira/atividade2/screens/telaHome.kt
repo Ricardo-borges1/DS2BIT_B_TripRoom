@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -26,6 +27,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -39,10 +41,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import br.senai.sp.jandira.atividade2.R
+import br.senai.sp.jandira.atividade2.reduzirData
+import br.senai.sp.jandira.atividade2.repository.ViagemRepository
 import br.senai.sp.jandira.atividade2.ui.theme.Atividade2Theme
 
 @Composable
 fun home(controleDeNavegacao: NavHostController) {
+
+    val viagens = ViagemRepository().listarTodasAsViagens()
+
     Column {
         Box(modifier = Modifier
             .fillMaxWidth()
@@ -186,56 +193,43 @@ fun home(controleDeNavegacao: NavHostController) {
                 ) {
                     Column (
                         modifier = Modifier.fillMaxWidth()
+                                .padding(16.dp)
                     ) {
-                        Card (
-                            modifier = Modifier.fillMaxWidth(),
-                            colors = CardDefaults.cardColors(Color.White)
+                        LazyColumn(
+                            modifier = Modifier.fillMaxSize()
                         ) {
-                            Image(painter = painterResource(id = R.drawable.pais), contentDescription = "London", modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(6.dp), contentScale = ContentScale.Crop)
-                        }
-                        Text(text = "London, 2019", fontSize = 16.sp, color = Color(0xFFCF06F0))
-                        Text(text = "London is the capital and the largest city of the United Kingdom, with a population of just under 9 million", fontSize = 11.sp, color = Color.LightGray, lineHeight = 12.sp)
-                        Column (
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(8.dp),
-                            horizontalAlignment = Alignment.End
-                        ) {
-                            Text(text = "18 Feb - 21 Feb", fontSize = 11.sp, color = Color(0xFFCF06F0))
-                        }
-                    }
-                }
-            }
-            item{
-                Card (
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(8.dp), colors = CardDefaults.cardColors(Color.White),
-                    elevation = CardDefaults.elevatedCardElevation(defaultElevation = 16.dp)
-                ) {
-                    Column (
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Card (
-                            modifier = Modifier.fillMaxWidth(),
-                            colors = CardDefaults.cardColors(Color.White)
+                            items(viagens) {
+                                Card(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(bottom = 17.dp)
+                                ) {
+                                    Column(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                    ) {
+                                        Surface(
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .height(250.dp)
+                                        ) {
+                                            Image(
+                                                painter = if (it.imagem == null) painterResource(id = R.drawable.no_image) else it.imagem!!,
+                                                contentDescription = "",
+                                                contentScale = ContentScale.Crop
+                                            )
+                                        }
+                                        Column(
+                                            modifier = Modifier.padding(8.dp)
+                                        ) {
+                                            Text(text = "${it.destino},  ${it.dataChegada.year}")
+                                            Text(text = it.descricao)
+                                            Text(text = reduzirData(it.dataChegada))
 
-                        ) {
-                            Image(painter = painterResource(id = R.drawable.porto), contentDescription = "London", modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(6.dp), contentScale = ContentScale.Crop)
-                        }
-                        Text(text = "Porto, 2022", fontSize = 16.sp, color = Color(0xFFCF06F0))
-                        Text(text = "Porto is the second city in Portugal, the capital of the Oporto District, and one of the Iberian Peninsula's major urban areas.", fontSize = 11.sp, color = Color.LightGray, lineHeight = 12.sp, modifier = Modifier.padding(vertical = 10.dp))
-                        Column (
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(8.dp),
-                            horizontalAlignment = Alignment.End
-                        ) {
-                            Text(text = "18 Feb - 21 Feb", fontSize = 11.sp, color = Color(0xFFCF06F0))
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -251,6 +245,6 @@ fun home(controleDeNavegacao: NavHostController) {
 @Composable
 fun HomePreview() {
     Atividade2Theme {
-        //home(controleDeNavegacao)
+       // home(controleDeNavegacao)
     }
 }

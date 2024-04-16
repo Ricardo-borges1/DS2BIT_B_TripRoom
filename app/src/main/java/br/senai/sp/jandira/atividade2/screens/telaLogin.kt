@@ -187,9 +187,11 @@ fun Greeting(controleDeNavegacao: NavHostController) {
 
                     text = "SIGN IN",
                     fontSize = 17.sp,
+                    modifier = Modifier.clickable { controleDeNavegacao.navigate("home") }
                 )
                 Icon(imageVector = Icons.Filled.ArrowForward, contentDescription = "",
                     modifier = Modifier.offset(x = 20.dp)
+
                 )
             }
 
