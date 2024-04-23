@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -42,6 +43,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import br.senai.sp.jandira.atividade2.R
 import br.senai.sp.jandira.atividade2.reduzirData
+import br.senai.sp.jandira.atividade2.repository.CategoriaRepository
 import br.senai.sp.jandira.atividade2.repository.ViagemRepository
 import br.senai.sp.jandira.atividade2.ui.theme.Atividade2Theme
 
@@ -49,6 +51,7 @@ import br.senai.sp.jandira.atividade2.ui.theme.Atividade2Theme
 fun home(controleDeNavegacao: NavHostController) {
 
     val viagens = ViagemRepository().listarTodasAsViagens()
+    val categorias = CategoriaRepository().ListarTodasCategorias()
 
     Column {
         Box(modifier = Modifier
@@ -114,55 +117,23 @@ fun home(controleDeNavegacao: NavHostController) {
                 .fillMaxWidth()
                 .padding(horizontal = 19.dp)
         ){
-            item{ Card (
-                modifier = Modifier
-                    .size(width = 130.dp, height = 60.dp)
-                    .padding(horizontal = 9.dp),
-                colors = CardDefaults.cardColors(Color(0xFFCF06F0))
-            ) {
-                Column (
-                    modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ){
-                    Icon(imageVector = Icons.Default.Landscape, contentDescription = "", tint = Color.White, modifier = Modifier.size(32.dp))
-                    Text(text = "Montain", color = Color.White)
+            items(categorias){
+                Card(
+                    modifier = Modifier
+                        .size(width = 130.dp, height = 60.dp)
+                        .padding(horizontal = 9.dp),
+                    colors = CardDefaults.cardColors(Color(0xFFCF06F0))
+                ) {
+                    Column (
+                        modifier = Modifier.fillMaxSize(),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ){
+                        Image(painter = it.image!!, contentDescription = "", modifier = Modifier.width(30.dp))
+                        Text(text = it.nome, color = Color.White)
+                    }
                 }
-            }
-            }
-            item{ Card (
-                modifier = Modifier
-                    .size(width = 130.dp, height = 60.dp)
-                    .padding(horizontal = 9.dp),
-                colors = CardDefaults.cardColors(Color(0xFFEAABF4))
-            ) {
-                Column (
-                    modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ){
-                    Icon(imageVector = Icons.Default.DownhillSkiing, contentDescription = "", tint = Color.White, modifier = Modifier.size(32.dp))
-                    Text(text = "Snow", color = Color.White)
-                }
-            }
-            }
-            item{ Card (
-                modifier = Modifier
-                    .size(width = 130.dp, height = 60.dp)
-                    .padding(horizontal = 9.dp),
-                colors = CardDefaults.cardColors(Color(0xFFEAABF4))
-            ) {
-                Column (
-                    modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ){
-                    Icon(imageVector = Icons.Default.BeachAccess, contentDescription = "", tint = Color.White, modifier = Modifier.size(32.dp))
-                    Text(text = "Beach", color = Color.White)
-                }
-            }
-            }
-        }
+            }}
         OutlinedTextField(value = "", onValueChange = {},
             modifier = Modifier
                 .fillMaxWidth()
@@ -183,8 +154,6 @@ fun home(controleDeNavegacao: NavHostController) {
             }
         )
         Text(text = "Past Trips", fontSize = 14.sp, color = Color.Gray, modifier = Modifier.padding(horizontal = 13.dp))
-        LazyColumn{
-            item{
                 Card (
                     modifier = Modifier
                         .fillMaxWidth()
@@ -192,8 +161,9 @@ fun home(controleDeNavegacao: NavHostController) {
                     elevation = CardDefaults.elevatedCardElevation(defaultElevation = 16.dp)
                 ) {
                     Column (
-                        modifier = Modifier.fillMaxWidth()
-                                .padding(16.dp)
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp)
                     ) {
                         LazyColumn(
                             modifier = Modifier.fillMaxSize()
@@ -222,10 +192,20 @@ fun home(controleDeNavegacao: NavHostController) {
                                         Column(
                                             modifier = Modifier.padding(8.dp)
                                         ) {
-                                            Text(text = "${it.destino},  ${it.dataChegada.year}")
-                                            Text(text = it.descricao)
-                                            Text(text = reduzirData(it.dataChegada))
-
+                                            Text(text = "${it.destino},  ${it.dataChegada.year}",
+                                                fontSize = 16.sp, color = Color(0xFFCF06F0))
+                                            Text(text = it.descricao, fontSize = 14.sp, color = Color.Gray, lineHeight = 15.sp)
+                                            Column (
+                                                modifier = Modifier
+                                                    .fillMaxWidth()
+                                                    .padding(8.dp),
+                                                horizontalAlignment = Alignment.End
+                                            ) {
+                                                Text(text = reduzirData(it.dataChegada), fontSize = 17.sp, color = Color(
+                                                    0xD3FC06F0
+                                                )
+                                                )
+                                            }
                                         }
                                     }
                                 }
@@ -233,8 +213,8 @@ fun home(controleDeNavegacao: NavHostController) {
                         }
                     }
                 }
-            }
-        }
+
+
     }
 
 }

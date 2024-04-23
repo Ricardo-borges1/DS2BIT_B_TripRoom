@@ -27,7 +27,15 @@ class ViagemRepository {
         porto.dataPartida = LocalDate.of(2022,11,12)
         porto.imagem = painterResource(id = R.drawable.porto)
 
+        val curacao = Viagem()
+        curacao.id = 3
+        curacao.destino = "Curacao"
+        curacao.descricao = " Uma ilha holandesa no Caribe "
+        curacao.dataChegada = LocalDate.of(2022,11,3)
+        curacao.dataPartida = LocalDate.of(2022,11,12)
+        curacao.imagem = painterResource(id = R.drawable.pais)
 
-        return listOf(londres, porto)
+
+        return listOf(londres, porto, curacao)
     }
 }
