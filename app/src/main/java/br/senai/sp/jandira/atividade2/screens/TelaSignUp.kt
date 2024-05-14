@@ -38,6 +38,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -45,6 +46,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import br.senai.sp.jandira.atividade2.R
+import br.senai.sp.jandira.atividade2.model.Usuarios
+import br.senai.sp.jandira.atividade2.repository.UsuarioRepository
 import br.senai.sp.jandira.atividade2.ui.theme.Atividade2Theme
 
 @Composable
@@ -69,6 +72,8 @@ fun SignUp(controleDeNavegacao: NavHostController) {//controleDeNavegacao: NavHo
     var lembrarState = remember {
         mutableStateOf(false)
     }
+
+    var usuarioRepository = UsuarioRepository(LocalContext.current)
 
     Column (
         modifier = Modifier.fillMaxSize()
@@ -256,7 +261,16 @@ fun SignUp(controleDeNavegacao: NavHostController) {//controleDeNavegacao: NavHo
             )
         }
 
-        Button(onClick = { controleDeNavegacao.navigate("login") },
+        Button(onClick = {
+            val novoUsuario = Usuarios(
+                nome = nomeState.value,
+                telefone = phoneState.value,
+                email = emailState.value,
+                senha = senhaState.value
+            )
+            usuarioRepository.salvar(novoUsuario)
+
+            controleDeNavegacao.navigate("login") },
             modifier = Modifier
                 .width(340.dp)
                 .height(50.dp)

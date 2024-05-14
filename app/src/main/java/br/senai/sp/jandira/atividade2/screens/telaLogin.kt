@@ -31,11 +31,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import br.senai.sp.jandira.atividade2.model.Usuarios
+import br.senai.sp.jandira.atividade2.repository.UsuarioRepository
 import br.senai.sp.jandira.atividade2.ui.theme.Atividade2Theme
 
 
@@ -58,6 +61,7 @@ fun Greeting(controleDeNavegacao: NavHostController) {
         mutableStateOf("")
     }
 
+    var usuarioRepository = UsuarioRepository(LocalContext.current)
 
 
     Column(
@@ -169,6 +173,7 @@ fun Greeting(controleDeNavegacao: NavHostController) {
             }
 
             Button(onClick = {
+
                 if (emailState.value == "admin@admin.com"&&senhaState.value=="admin"){
                     controleDeNavegacao.navigate("home")
                 }else{
