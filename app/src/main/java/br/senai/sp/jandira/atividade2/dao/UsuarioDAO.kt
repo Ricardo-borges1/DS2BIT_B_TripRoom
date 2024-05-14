@@ -28,4 +28,8 @@ interface UsuarioDAO {
     @Query("SELECT * FROM tbl_usuarios where nome = :nome order by nome asc")
     fun buscarUsuarioPeloNome(nome: String): List<Usuarios>
 
+    @Query("SELECT * FROM tbl_usuarios WHERE email = :email")
+    fun buscarUsuarioPeloEmail(email: String): Usuarios?
+
+
 }

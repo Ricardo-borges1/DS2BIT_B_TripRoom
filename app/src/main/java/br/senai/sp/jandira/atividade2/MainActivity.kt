@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import br.senai.sp.jandira.atividade2.repository.UsuarioRepository
 import br.senai.sp.jandira.atividade2.screens.Greeting
 import br.senai.sp.jandira.atividade2.screens.SignUp
 import br.senai.sp.jandira.atividade2.screens.home

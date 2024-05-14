@@ -15,4 +15,10 @@ class UsuarioRepository (context: Context){
     fun listarTodosUsuarios(): List<Usuarios>{
         return db.listarTodososUsuarios()
     }
+
+    fun verificarCredenciais(email: String, senha: String): Boolean {
+        val usuario = db.buscarUsuarioPeloEmail(email)
+        return usuario != null && usuario.senha == senha
+    }
+
 }

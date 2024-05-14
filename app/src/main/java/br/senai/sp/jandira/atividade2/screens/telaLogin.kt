@@ -173,8 +173,9 @@ fun Greeting(controleDeNavegacao: NavHostController) {
             }
 
             Button(onClick = {
-
-                if (emailState.value == "admin@admin.com"&&senhaState.value=="admin"){
+                val email = emailState.value
+                val senha = senhaState.value
+                if (usuarioRepository.verificarCredenciais(email,senha)){
                     controleDeNavegacao.navigate("home")
                 }else{
                     erroState.value=true
