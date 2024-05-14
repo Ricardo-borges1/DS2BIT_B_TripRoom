@@ -37,6 +37,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import br.senai.sp.jandira.atividade2.dao.UsuarioDAO
 import br.senai.sp.jandira.atividade2.model.Usuarios
 import br.senai.sp.jandira.atividade2.repository.UsuarioRepository
 import br.senai.sp.jandira.atividade2.ui.theme.Atividade2Theme
@@ -60,6 +61,7 @@ fun Greeting(controleDeNavegacao: NavHostController) {
     var mensagemErroState = remember {
         mutableStateOf("")
     }
+
 
     var usuarioRepository = UsuarioRepository(LocalContext.current)
 
