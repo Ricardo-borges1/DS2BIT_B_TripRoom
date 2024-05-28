@@ -129,7 +129,7 @@ fun home(controleDeNavegacao: NavHostController) {
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ){
-                        Image(painter = it.image!!, contentDescription = "", modifier = Modifier.width(30.dp))
+                        Image(painter = it.image!!, contentDescription = "",modifier = Modifier.width(30.dp))
                         Text(text = it.nome, color = Color.White)
                     }
                 }
@@ -157,7 +157,7 @@ fun home(controleDeNavegacao: NavHostController) {
                 Card (
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(13.dp), colors = CardDefaults.cardColors(Color.White),
+                        .padding(13.dp),
                     elevation = CardDefaults.elevatedCardElevation(defaultElevation = 16.dp)
                 ) {
                     Column (
@@ -170,6 +170,10 @@ fun home(controleDeNavegacao: NavHostController) {
                         ) {
                             items(viagens) {
                                 Card(
+                                    colors = CardDefaults.cardColors(containerColor = Color(
+                                        0xFFFFFFFF
+                                    )
+                                    ),
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .padding(bottom = 17.dp)
@@ -201,7 +205,9 @@ fun home(controleDeNavegacao: NavHostController) {
                                                     .padding(8.dp),
                                                 horizontalAlignment = Alignment.End
                                             ) {
-                                                Text(text = reduzirData(it.dataChegada), fontSize = 17.sp, color = Color(
+                                                Text(text = "${reduzirData(it.dataChegada)} - ${reduzirData(it.dataPartida)}",
+                                                    fontSize = 15.sp,
+                                                    color = Color(
                                                     0xD3FC06F0
                                                 )
                                                 )

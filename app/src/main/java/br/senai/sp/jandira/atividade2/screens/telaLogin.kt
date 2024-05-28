@@ -33,6 +33,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -62,9 +63,9 @@ fun Greeting(controleDeNavegacao: NavHostController) {
         mutableStateOf("")
     }
 
-
     var usuarioRepository = UsuarioRepository(LocalContext.current)
 
+    val listaUsuarios = usuarioRepository.listarTodosUsuarios()
 
     Column(
         modifier = Modifier.fillMaxSize()
@@ -155,6 +156,7 @@ fun Greeting(controleDeNavegacao: NavHostController) {
                         senhaState.value = it
                     },
                     modifier = Modifier.fillMaxWidth(),
+                    visualTransformation = PasswordVisualTransformation(),
                     shape = RoundedCornerShape(10.dp),
                     leadingIcon = {
                         Icon(imageVector = Icons.Filled.Lock,
@@ -168,20 +170,25 @@ fun Greeting(controleDeNavegacao: NavHostController) {
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = Color(0xFF8BC34A),
                         unfocusedBorderColor = Color(0xFFC51BCA),
-                        focusedTextColor = Color(0xEDEE0505),
+                        focusedTextColor = Color(0xED000000),
                         unfocusedTextColor = Color(0xFF0A0A0A)
                     )
                 )
             }
 
             Button(onClick = {
-                val email = emailState.value
-                val senha = senhaState.value
-                if (usuarioRepository.verificarCredenciais(email,senha)){
-                    controleDeNavegacao.navigate("home")
+                if (emailState.value !=""&& senhaState.value!= ""){
+                    listaUsuarios.forEach{
+                        if (it.email==emailState.value&& it.senha==senhaState.value){
+                            controleDeNavegacao.navigate("home")
+                        }else{
+                            erroState.value=true
+                            mensagemErroState.value = "Existem dados inválidados"
+                        }
+                    }
                 }else{
                     erroState.value=true
-                    mensagemErroState.value=" Usuário ou senha incorretos!"
+                    mensagemErroState.value="Campos nao foram preenchidos!"
                 }
                  },
                 modifier = Modifier
@@ -194,8 +201,7 @@ fun Greeting(controleDeNavegacao: NavHostController) {
                 Text(
 
                     text = "SIGN IN",
-                    fontSize = 17.sp,
-                    modifier = Modifier.clickable { controleDeNavegacao.navigate("home") }
+                    fontSize = 17.sp
                 )
                 Icon(imageVector = Icons.Filled.ArrowForward, contentDescription = "",
                     modifier = Modifier.offset(x = 20.dp)

@@ -165,7 +165,7 @@ fun SignUp(controleDeNavegacao: NavHostController) {//controleDeNavegacao: NavHo
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = Color(0xFF8BC34A),
                     unfocusedBorderColor = Color(0xFFC51BCA),
-                    focusedTextColor = Color(0xEDEE0505),
+                    focusedTextColor = Color(0xED000000),
                     unfocusedTextColor = Color(0xFF0A0A0A)
                 )
             )
@@ -191,7 +191,7 @@ fun SignUp(controleDeNavegacao: NavHostController) {//controleDeNavegacao: NavHo
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = Color(0xFF8BC34A),
                     unfocusedBorderColor = Color(0xFFC51BCA),
-                    focusedTextColor = Color(0xEDEE0505),
+                    focusedTextColor = Color(0xED090909),
                     unfocusedTextColor = Color(0xFF0A0A0A)
                 )
             )
@@ -217,7 +217,7 @@ fun SignUp(controleDeNavegacao: NavHostController) {//controleDeNavegacao: NavHo
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = Color(0xFF8BC34A),
                     unfocusedBorderColor = Color(0xFFC51BCA),
-                    focusedTextColor = Color(0xEDEE0505),
+                    focusedTextColor = Color(0xED141414),
                     unfocusedTextColor = Color(0xFF0A0A0A)
                 )
             )
@@ -243,7 +243,7 @@ fun SignUp(controleDeNavegacao: NavHostController) {//controleDeNavegacao: NavHo
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = Color(0xFF8BC34A),
                     unfocusedBorderColor = Color(0xFFC51BCA),
-                    focusedTextColor = Color(0xEDEE0505),
+                    focusedTextColor = Color(0xED000000),
                     unfocusedTextColor = Color(0xFF0A0A0A)
                 )
             )
